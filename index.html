@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
   <title>Expediente SOFIPOs | Trafalgar SFP &amp; NC Opciones de Negocios</title>
   <meta name="description" content="Ficha técnica institucional de dos Sociedades Financieras Populares: Trafalgar SFP y NC Opciones de Negocios, S.A. de C.V., S.F.P. Datos regulatorios, financieros y de riesgo." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230a2540'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='28' font-weight='bold' fill='%23b8902e' text-anchor='middle'%3EEX%3C/text%3E%3C/svg%3E" />
@@ -13,6 +14,37 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <!-- ===== GATE PIN ===== -->
+  <div id="pin-gate" style="position:fixed; inset:0; background:linear-gradient(160deg,#0a2540 0%,#12365c 100%); display:grid; place-items:center; z-index:9999;">
+    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(184,144,46,0.5); border-radius:12px; padding:2.5rem 2.5rem; max-width:360px; width:90%; text-align:center;">
+      <div style="font-family:Inter,Arial,sans-serif; font-weight:800; font-size:1.1rem; color:#b8902e; letter-spacing:2px; margin-bottom:0.4rem;">EXPEDIENTE SOFIPOs</div>
+      <p style="color:#c8d5e3; font-size:0.85rem; margin-bottom:1.4rem; font-family:Inter,Arial,sans-serif;">Contenido restringido. Ingresa el PIN de acceso.</p>
+      <input id="pin-input" type="password" inputmode="numeric" placeholder="PIN" maxlength="4" style="width:100%; padding:0.8rem 1rem; font-size:1.3rem; text-align:center; letter-spacing:8px; border-radius:8px; border:2px solid rgba(184,144,46,0.5); background:rgba(255,255,255,0.08); color:#fff; outline:none; font-family:Inter,Arial,sans-serif;" />
+      <button id="pin-btn" style="width:100%; margin-top:1rem; padding:0.8rem; background:#b8902e; color:#fff; font-weight:700; border:none; border-radius:8px; cursor:pointer; font-family:Inter,Arial,sans-serif;">Acceder</button>
+      <p id="pin-error" style="color:#e58a8a; font-size:0.8rem; margin-top:0.8rem; display:none; font-family:Inter,Arial,sans-serif;">PIN incorrecto. Intenta de nuevo.</p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var gate = document.getElementById("pin-gate");
+      var input = document.getElementById("pin-input");
+      var btn = document.getElementById("pin-btn");
+      var err = document.getElementById("pin-error");
+      function check() {
+        if (input.value === "8822") {
+          gate.style.display = "none";
+          try { sessionStorage.setItem("gate_ok", "1"); } catch (e) {}
+        } else {
+          err.style.display = "block";
+          input.value = "";
+        }
+      }
+      try { if (sessionStorage.getItem("gate_ok") === "1") gate.style.display = "none"; } catch (e) {}
+      btn.addEventListener("click", check);
+      input.addEventListener("keydown", function (e) { if (e.key === "Enter") check(); });
+      input.focus();
+    })();
+  </script>
 
   <!-- ===== HEADER ===== -->
   <header class="site-header" id="inicio">
